@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <style>
+    img{
+			width: 110px;
+			border-bottom-style: solid;
+			border-top-left-radius: 16px;
+			border-top-right-radius: 16px;
+		}
+		.personagem{
+			width: 110px;
+			margin: 20px;
+			border-style: solid;
+			border-radius: 16px;
+			text-align: center;
+		}
+  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <script>
+    ons.ready(function() {
+      console.log("Onsen UI is ready!");
+    });
+
+    if (ons.platform.isIPhoneX()) {
+      document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
+      document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
+    }
+  </script>
+  <script src="css/Marv.css"> 
+</head>
+<body>
+  <div id='herois'
+		 style="
+		 	display:flex;
+		 	flex-wrap: wrap;
+		 	justify-content: space-between;
+		 	   " 	
+		></div>
+</body>
+<script>
+	
+		fetch('https://gateway.marvel.com:443/v1/public/characters?ts=1598725515&apikey=ad87035437fe486ec8667d94a8137c90&hash=884f7c7e12fb3e086e56d8a4de8c525e&limit=4'
+			).then((response) => {
+					return response.json();
+			}).then((jsonParsed) => {
+			const divHero = document.querySelector('#herois');
+
+			jsonParsed.data.results.forEach(element =>{
+				const srcImage = element.thumbnail.path + '.' + element.thumbnail.extension
+				const nameHero = element.name 
+
+				createDivHero(srcImage, nameHero, divHero);
+			});
+			console.log(jsonParsed);
+		})	
+
+
+		function createDivHero(srcImage, nameHero, divToAppend){
+			const divPai = document.createElement('div')
+			const divFilho = document.createElement('div')
+			const textName = document.createElement('text')
+			const img = document.createElement('img')
+
+			textName.textContent = nameHero
+			img.src = srcImage
+
+			divFilho.appendChild(img)
+			divFilho.appendChild(textName)
+			divPai.appendChild(divFilho)
+			divToAppend.appendChild(divPai)
+
+			divPai.classList.add("personagem");
+		}
+    
+	</script>
+</html>
