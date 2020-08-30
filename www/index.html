@@ -1,21 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <style>
-    img{
-			width: 110px;
-			border-bottom-style: solid;
-			border-top-left-radius: 16px;
-			border-top-right-radius: 16px;
-		}
-		.personagem{
-			width: 110px;
-			margin: 20px;
-			border-style: solid;
-			border-radius: 16px;
-			text-align: center;
-		}
-  </style>
+ 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
@@ -42,7 +28,9 @@
 </head>
 <body>
   <div id='herois'
+  
 		 style="
+     background-color:#B22222;
 		 	display:flex;
 		 	flex-wrap: wrap;
 		 	justify-content: space-between;
@@ -51,7 +39,7 @@
 </body>
 <script>
 	
-		fetch('https://gateway.marvel.com:443/v1/public/characters?ts=1598725515&apikey=ad87035437fe486ec8667d94a8137c90&hash=884f7c7e12fb3e086e56d8a4de8c525e&limit=4'
+		fetch('https://gateway.marvel.com:443/v1/public/characters?ts=1598725515&apikey=ad87035437fe486ec8667d94a8137c90&hash=884f7c7e12fb3e086e56d8a4de8c525e&limit=8'
 			).then((response) => {
 					return response.json();
 			}).then((jsonParsed) => {
